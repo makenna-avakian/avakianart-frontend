@@ -6,7 +6,7 @@ export default function Home() {
         <h2 className="text-2xl mb-8">Artist & Software Engineer</h2>
 
         <p className="max-w-xl mx-auto text-lg mb-6">
-          Welcome to my art portfolio. Explore my works, available pieces, and
+          Explore my works, available pieces, and
           custom commission opportunities.
         </p>
 
