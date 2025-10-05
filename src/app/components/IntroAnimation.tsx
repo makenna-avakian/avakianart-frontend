@@ -4,26 +4,34 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export default function IntroAnimation() {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShow(false), 5500);
-    return () => clearTimeout(timer);
+    const hasPlayed = localStorage.getItem("introPlayed");
+    if (!hasPlayed) {
+        setShow(true); 
+        localStorage.setItem("introPlayed", "true"); 
+      }
+  
+      if (!hasPlayed) {
+        const timer = setTimeout(() => setShow(false), 5500);
+        return () => clearTimeout(timer);
+      }
   }, []);
 
   if (!show) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
-      <div className="relative flex flex-col items-center justify-center w-full max-w-5xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
+      <div className="relative flex w-full max-w-5xl flex-col items-center justify-center">
         {/* M, A, and Line in one relative container */}
-        <div className="relative flex items-center justify-center text-7xl font-serif text-black w-full">
+        <div className="relative flex w-full items-center justify-center font-serif text-7xl text-black">
           {/* Line (always centered, overlaps letters) */}
           <motion.div
             initial={{ scaleX: 1 }}
             animate={{ scaleX: 0 }}
             transition={{ duration: 1.9, ease: "easeInOut" }}
-            className="absolute h-0.5 bg-black origin-center"
+            className="absolute h-0.5 origin-center bg-black"
             style={{ width: "450px" }}
           />
 
@@ -63,16 +71,6 @@ export default function IntroAnimation() {
             </motion.span>
           </motion.div>
         </div>
-
-        {/* Art */}
-        <motion.h3
-          initial={{ opacity: 0, y: 0 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 3, duration: 1 }}
-          className="mt-8 text-3xl text-black font-serif"
-        >
-          Art
-        </motion.h3>
       </div>
     </div>
   );

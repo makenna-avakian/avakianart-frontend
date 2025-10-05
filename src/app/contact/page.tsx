@@ -1,7 +1,11 @@
+import Navbar from "../components/Navbar";
+
 export default function ContactPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-50 p-8 text-gray-900">
-      <div className="w-full max-w-lg">
+    <>
+      <Navbar />
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-50 p-8 text-gray-900">
+        <div className="w-full max-w-lg">
         <h1 className="mb-6 text-center text-4xl font-bold">Contact Me</h1>
         <p className="mb-8 text-center text-lg text-gray-700">
           Interested in a custom commission or collaboration? Fill out the form below and I’ll get
@@ -48,5 +52,6 @@ export default function ContactPage() {
         </form>
       </div>
     </main>
+    </>
   );
 }
